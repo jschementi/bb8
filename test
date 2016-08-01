@@ -1,0 +1,4 @@
+echo 1 | nc -w0 -u 0.0.0.0 8081
+sleep 1
+echo 0 | nc -w0 -u 0.0.0.0 8081
+sleep 1

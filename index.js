@@ -2,8 +2,8 @@
 
 if (!process.env.PORT) {
 
-  var noble = require('noble');
-  var child_process = require('child_process');
+  const noble = require('noble');
+  const child_process = require('child_process');
 
   console.log('No device ID, finding bb-8...');
 
@@ -33,14 +33,14 @@ if (!process.env.PORT) {
 
 } else {
 
-  var net = require('net');
-  var sphero = require("sphero");
+  const dgram = require('dgram');
+  const sphero = require("sphero");
 
-  var deviceID = process.env.PORT;
+  const deviceID = process.env.PORT;
 
   console.log('Connecting to BB-8', deviceID);
 
-  var bb8 = sphero(deviceID);
+  const bb8 = sphero(deviceID);
 
   bb8.connect((err) => {
     if (err) {
@@ -51,34 +51,34 @@ if (!process.env.PORT) {
     bb8.setAutoReconnect(1, 20, (err) => {
       if (err) throw err;
 
-      let interval;
+      const server = dgram.createSocket('udp4');
 
-      var server = net.createServer((socket) => {
-        socket.on('data', data => {
-          var exitCode = parseInt(data, 10);
-          console.log('Exit code: ', exitCode);
-          if (exitCode === 0) {
-            bb8.color('green');
-          } else if (isNaN(exitCode)) {
-            bb8.color('orange');
-          } else {
-            bb8.color('red');
-          }
-        });
-        socket.on('end', () => {
-          console.log('socket end');
-        });
-        socket.on('error', err => {
-          console.log('socket error', err);
-        });
-      }).on('error', err => {
-        console.error('server error', err);
+      server.on('error', (err) => {
+        console.log(`server error:\n${err.stack}`);
+        server.close();
       });
 
-      server.listen(8081, () => {
+      server.on('message', (msg, rinfo) => {
+        console.log(rinfo);
+        console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+
+        var exitCode = parseInt(msg, 10);
+        console.log('Exit code: ', exitCode);
+        if (exitCode === 0) {
+          bb8.color('green');
+        } else if (isNaN(exitCode)) {
+          bb8.color('orange');
+        } else {
+          bb8.color('red');
+        }
+      });
+
+      server.on('listening', () => {
         var address = server.address();
-        console.log('opened server on %j', address);
+        console.log(`server listening ${address.address}:${address.port}`);
       });
+
+      server.bind(8081);
     });
   });
 }
