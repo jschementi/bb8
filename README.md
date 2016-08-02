@@ -41,7 +41,10 @@ got me thinking about using lights and color to provide custom notifications.
 I've always wanted a "build broken" orb for my desk, but never got around to
 doing it. When my kids asked to play with BB-8, I thought it would be just too
 perfect if I could just hack BB-8 to be my own custom status light, since it
-normally sits on my desk doing nothing.
+normally sits on my desk doing nothing. Once I found the
+[Sphero SDK](http://sdk.sphero.com/), I first felt stupid for owning this thing
+for 8 months and not hacking it yet. Shame is a powerful motivator, so here we
+are.
 
 > I didn't back the Das Keyboard 5Q because I prefer compact keyboards (without
 > a numpad), so can't wait to see if Das Keyboard makes a compact version.
