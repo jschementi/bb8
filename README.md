@@ -32,3 +32,35 @@ When running a command that exits successfully (exit code = 0), BB-8 will glow
 green.
 
 Otherwise (exit code != 0), BB-8 will glow red.
+
+## Inspiration
+
+The
+[Das Keyboard 5Q](https://www.kickstarter.com/projects/1229573443/das-keyboard-5q-the-cloud-connected-keyboard/)
+got me thinking about using lights and color to provide custom notifications.
+I've always wanted a "build broken" orb for my desk, but never got around to
+doing it. When my kids asked to play with BB-8, I thought it would be just too
+perfect if I could just hack BB-8 to be my own custom status light, since it
+normally sits on my desk doing nothing.
+
+> I didn't back the Das Keyboard 5Q because I prefer compact keyboards (without
+> a numpad), so can't wait to see if Das Keyboard makes a compact version.
+
+## Next Steps
+
+Shell integration was just the low-hanging-fruit to start with. Having BB-8
+glow red/green based on process exit codes handles a bunch of situations I
+wanted, like build and test failures, but zero=green non-zero=red is a very
+narrow style of notification.
+
+Ultimately, it'd be nice to have a local service that recieves arbitrary events
+from your system or the internet, and responds to them in customizable ways.
+
+For example:
+
+- Pulse red when I have a meeting
+- Shake head "yes" when I finish a todo.txt task
+
+## Contribute
+
+[Pull Requests](https://github.com/jschementi/bb8/pulls) welcome!
