@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+brew install ffmpeg
+brew install imagemagick
+
 rm -f out.mp4
 rm -f output*.png
 rm -f bb8.gif
