@@ -47,7 +47,7 @@ if (!process.env.PORT) {
       return console.log('BB-8 failed to connect', err);
     }
     console.log('BB-8 connected');
-    bb8.color('orangered');
+    bb8.color('white', 0.5);
     bb8.setAutoReconnect(1, 20, (err) => {
       if (err) throw err;
 
