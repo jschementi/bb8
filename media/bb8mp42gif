@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+rm -f out.mp4
+rm -f output*.png
+rm -f bb8.gif
+ffmpeg -i bb8.mp4 -filter:v "crop=800:720:250:0" -c:a copy out.mp4
+ffmpeg -i out.mp4 -vf scale=320:-1:flags=lanczos,fps=10 output%03d.png
+convert -loop 0 -dither None -colors 80 output*.png -layers OptimizeFrame bb8.gif
+rm -f out.mp4
+rm -f output*.png
