@@ -3,6 +3,8 @@
 [BB-8](http://www.sphero.com/starwars) wasn't built to just sit on your desk.
 It wants to tell you stuff. Let it.
 
+![BB-8 notifying you if your shell commands succeed or not](https://github.com/jschementi/bb8/raw/master/media/bb8.gif)
+
 ## Prerequisites
 
 - A [Sphero BB-8](http://www.sphero.com/starwars) (though not tested, it may
