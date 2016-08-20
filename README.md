@@ -28,10 +28,10 @@ source notify.zsh                                 # Enable notifications for
 
 ## Usage
 
-When running a command that exits successfully (exit code = 0), BB-8 will glow
+When running a command that exits successfully (`exit code == 0`), BB-8 will glow
 green.
 
-Otherwise (exit code != 0), BB-8 will glow red.
+Otherwise (`exit code != 0`), BB-8 will glow red.
 
 ## Inspiration
 
