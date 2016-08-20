@@ -1,5 +1,22 @@
 // jshint esversion:6
 
+function shakeHead (bb8) {
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i > 4) {
+      centerHead(bb8);
+      return clearInterval(interval);
+    }
+    const angle = i % 2 === 0 ? 32 : 360-32;
+    bb8.roll(0, angle);
+    i++;
+  }, 100);
+}
+
+function centerHead (bb8) {
+  bb8.roll(0, 0);
+}
+
 if (!process.env.PORT) {
 
   const noble = require('noble');
@@ -48,6 +65,7 @@ if (!process.env.PORT) {
     }
     console.log('BB-8 connected');
     bb8.color('white', 0.5);
+    centerHead(bb8);
     bb8.setAutoReconnect(1, 20, (err) => {
       if (err) throw err;
 
@@ -62,19 +80,21 @@ if (!process.env.PORT) {
         console.log(rinfo);
         console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
 
-        var exitCode = parseInt(msg, 10);
+        const exitCode = parseInt(msg, 10);
         console.log('Exit code: ', exitCode);
         if (exitCode === 0) {
           bb8.color('green');
+          centerHead(bb8);
         } else if (isNaN(exitCode)) {
           bb8.color('orange');
         } else {
           bb8.color('red');
+          shakeHead(bb8);
         }
       });
 
       server.on('listening', () => {
-        var address = server.address();
+        const address = server.address();
         console.log(`server listening ${address.address}:${address.port}`);
       });
 
